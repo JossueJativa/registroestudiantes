@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager {
-    private List<String> listStudents = new ArrayList<>();
-    private List<Double> listGrades = new ArrayList<>();
+    private List<String> listStudents = new ArrayList<String>();
+    private List<Double> listGrades = new ArrayList<Double>();
 
     public void addStudent(String student_name, double student_grade) {
         listStudents.add(student_name);

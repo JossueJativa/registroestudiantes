@@ -6,14 +6,12 @@
 	* Responsable de revision manual
 	* Responsable de análisis estático
 
-
 | Cargo | Nombre de la persona |
 |------|---------------|
 | Líder |  |
 | Responsable de análisis de métricas |  |
 | Responsable de revision manual | Jossue Játiva |
 | Responsable de análisis estática |  |
-
 
 2. Análisis del proyecto
 	* Partir por un proyecto de Java (Proporciona la plantilla básica)
@@ -77,7 +75,6 @@
 	* Resultados Obtenidos (comparativa del proyecto antes y después)
 	* Reflexiones sobre el trabajo colaborativo
 
-
 ---
 # Trabajo de proyecto integrador (Pruebas):
 
@@ -85,7 +82,6 @@
 	* Documento o sección que detalle los roles asignados a cada miembro, con una breve descripción de sus responsabilidades
 	* Descripción de los objetivos del equipo y como planean alcanzarlos
 	* Descripción de por que cada rol fue asignado a un miembro en especifico
-
 
 2. Evidencia de trabajo colaborativo:
 	* Registro de reuniones o discusiones grupales

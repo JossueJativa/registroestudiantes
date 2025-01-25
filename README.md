@@ -11,7 +11,7 @@
 |------|---------------|
 | Líder |  |
 | Responsable de análisis de métricas |  |
-| Responsable de revision manual |  |
+| Responsable de revision manual | Jossue Játiva |
 | Responsable de análisis estática |  |
 
 
@@ -25,11 +25,15 @@
 			- Errores de estilo
 			- Métricas no cumplidas
 
-| Que se hizo | Código Antiguo | Código Nuevo |
-| --------| ----------------- | ----------- |
-| addStudent |  |  |
-| listStudents |  |  |
-| main |  |  |
+| Identificación de problema | Código Antiguo |
+| --------| ----------------- |
+| Tipo de lista no especifica | ```private List students = new ArrayList<>();``` |
+|  | ```private List grades = new ArrayList<>();``` |
+| Nombres no declaran objeto | ```private List students = new ArrayList<>();``` |
+|  | ```private List<Double> grades = new ArrayList<>();``` |
+| Nombres no son expresivos | ```public void addStudent(String s, double g)``` |
+| Nombre de la instancia con falta de legibilidad | ```StudentManager sm = new StudentManager();``` |
+| Todas las responsabilidades están en StudentManager.java | [StudentManager.java](src/main/java/StudentManager.java) |
 
 3. Propuesta de mejora
 	* Problemas identificados
@@ -38,9 +42,13 @@
 
 | Problema identificado | Técnica de calidad a implementar | Métrica para evaluar la calidad |
 | --------| ----------------- | ----------- |
-| addStudent |  |  |
-| listStudents |  |  |
-| main |  |  |
+| No se especifica el tipo de lista | ```private List students = new ArrayList<>();``` | ```private List<String> students = new ArrayList<>();``` |
+|  | ```private List grades = new ArrayList<>();``` | ```private List<Double> grades = new ArrayList<>();``` |
+| No se identifica que tipo de objeto es | ```private List students = new ArrayList<>();``` | ```private List<Double> listStudents = new ArrayList<>();``` |
+|  | ```private List<Double> grades = new ArrayList<>();``` | ```private List<Double> listGrades = new ArrayList<>();``` |
+| Cambiar variables de addStudent | ```public void addStudent(String s, double g)``` | ```public void addStudent(String student_name, double student_grade)``` |
+| Cambiar nombre de la instancia de StudentManager | ```StudentManager sm = new StudentManager();``` | ```StudentManager student_manager = new StudentManager();``` |
+| Creación de responsabilidad única separando main de StudentManager | [StudentManager.java](src/main/java/StudentManager.java) | [Main.java](src/main/java/Main.java) |
 
 4. Implementación:
 	* Refactorización del código para cumplir con CleanCode y SOLID
@@ -51,7 +59,7 @@
 | --------| ----------------- | ----------- |
 | addStudent |  |  |
 | listStudents |  |  |
-| main |  |  |
+| main | (Main.java)['src/main/java/Main.java'] |  |
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

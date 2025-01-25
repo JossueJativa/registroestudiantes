@@ -2,24 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentManager {
-    private List students = new ArrayList<>();
-    private List grades = new ArrayList<>();
+    private List<String> listStudents = new ArrayList<>();
+    private List<Double> listGrades = new ArrayList<>();
 
-    public void addStudent(String s, double g) {
-        students.add(s);
-        grades.add(g);
+    public void addStudent(String student_name, double student_grade) {
+        listStudents.add(student_name);
+        listGrades.add(student_grade);
         System.out.println("Student added.");
     }
 
     public void listStudents() {
-        for (int i = 0; i < students.size(); i++) {
-            System.out.println("Student: " + students.get(i) + ", Grade: " + grades.get(i));
+        for (int i = 0; i < listStudents.size(); i++) {
+            System.out.println("Student: " + listStudents.get(i) + ", Grade: " + listGrades.get(i));
         }
     }
 
-    public static void main(String[] args) {
-        StudentManager sm = new StudentManager();
-        sm.addStudent("John Doe", 85.5);
-        sm.listStudents();
-    }
+    // Cambio a Main.java
+    // public static void main(String[] args) {
+    //     StudentManager student_manager = new StudentManager();
+    //     student_manager.addStudent("John Doe", 85.5);
+    //     student_manager.listStudents();
+    // }
 }

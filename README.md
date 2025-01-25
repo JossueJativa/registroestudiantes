@@ -59,7 +59,7 @@
 | --------| ----------------- | ----------- |
 | addStudent |  |  |
 | listStudents |  |  |
-| main | (Main.java)['src/main/java/Main.java'] |  |
+| main |  |  |
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

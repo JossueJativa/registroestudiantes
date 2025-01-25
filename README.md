@@ -57,9 +57,9 @@
 
 | Refactorización de código | Configuración de pipeline | Generar y analizar reportes |
 | --------| ----------------- | ----------- |
-| addStudent |  |  |
-| listStudents |  |  |
-| main |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

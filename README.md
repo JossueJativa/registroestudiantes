@@ -36,19 +36,19 @@
 | Todas las responsabilidades están en StudentManager.java | [StudentManager.java](src/main/java/StudentManager.java) |
 
 3. Propuesta de mejora
-	* Problemas identificados
-	* Técnicas de calidad a implementar (SOLID, Clean Code, Análisis estático)
-	* Métricas para evaluar la calidad (Cobertura de código y cumplimiento de estilos)
+    * Problemas identificados
+    * Técnicas de calidad a implementar (SOLID, Clean Code, Análisis estático)
+    * Métricas para evaluar la calidad (Cobertura de código y cumplimiento de estilos)
 
-| Problema identificado | Técnica de calidad a implementar | Métrica para evaluar la calidad |
-| --------| ----------------- | ----------- |
-| No se especifica el tipo de lista | ```private List students = new ArrayList<>();``` | ```private List<String> students = new ArrayList<>();``` |
-|  | ```private List grades = new ArrayList<>();``` | ```private List<Double> grades = new ArrayList<>();``` |
-| No se identifica que tipo de objeto es | ```private List students = new ArrayList<>();``` | ```private List<Double> listStudents = new ArrayList<>();``` |
-|  | ```private List<Double> grades = new ArrayList<>();``` | ```private List<Double> listGrades = new ArrayList<>();``` |
-| Cambiar variables de addStudent | ```public void addStudent(String s, double g)``` | ```public void addStudent(String student_name, double student_grade)``` |
-| Cambiar nombre de la instancia de StudentManager | ```StudentManager sm = new StudentManager();``` | ```StudentManager student_manager = new StudentManager();``` |
-| Creación de responsabilidad única separando main de StudentManager | [StudentManager.java](src/main/java/StudentManager.java) | [Main.java](src/main/java/Main.java) |
+| Problema identificado | Técnica de calidad a implementar | Métrica para evaluar la calidad | Código nuevo |
+| --------| ----------------- | ----------- | ----------- |
+| No se especifica el tipo de lista | Clean Code | Cobertura de código y cumplimiento de estilos | ```private List<String> students = new ArrayList<>();``` |
+|  | Clean Code | Cobertura de código y cumplimiento de estilos | ```private List<Double> grades = new ArrayList<>();``` |
+| No se identifica que tipo de objeto es | Clean Code | Cobertura de código y cumplimiento de estilos | ```private List<Double> listStudents = new ArrayList<>();``` |
+|  | Clean Code | Cobertura de código y cumplimiento de estilos | ```private List<Double> listGrades = new ArrayList<>();``` |
+| Cambiar variables de addStudent | Clean Code | Cobertura de código y cumplimiento de estilos | ```public void addStudent(String student_name, double student_grade)``` |
+| Cambiar nombre de la instancia de StudentManager | Clean Code | Cobertura de código y cumplimiento de estilos | ```StudentManager student_manager = new StudentManager();``` |
+| Creación de responsabilidad única separando main de StudentManager | SOLID | Cobertura de código y cumplimiento de estilos | [Main.java](src/main/java/Main.java) |
 
 4. Implementación:
 	* Refactorización del código para cumplir con CleanCode y SOLID

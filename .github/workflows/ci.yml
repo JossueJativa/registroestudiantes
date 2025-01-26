@@ -35,9 +35,16 @@ jobs:
         bash <(curl -s https://codecov.io/bash) -t your_codecov_token
       continue-on-error: true
 
+    - name: Upload JaCoCo report
+      uses: actions/upload-artifact@v2
+      with:
+        name: jacoco-report
+        path: target/site/jacoco
+
     - name: Verify JaCoCo coverage
       run: |
-        COVERAGE=$(mvn jacoco:report | grep -oP 'Total.*?(\d+)%' | grep -oP '\d+')
+        mvn jacoco:report
+        COVERAGE=$(grep -oP 'Total.*?(\d+)%' target/site/jacoco/jacoco.csv | grep -oP '\d+')
         if [ "$COVERAGE" -lt 80 ]; then
           echo "Code coverage is below 80%: $COVERAGE%"
           exit 1

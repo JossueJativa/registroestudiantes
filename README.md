@@ -67,10 +67,6 @@
 | Total de checkstyle después de la implementación | | |  |
 |---| ---| --- | --- |
 | Total de SpotBugs antes de la implementación |  |  | 100% |
-| SpotBugs | Se corrigieron errores de código detectados por SpotBugs.            |  | Se generaron reportes de SpotBugs para evaluar la calidad del código.             |
-| SpotBugs | Se optimizó la gestión de memoria y recursos. |  | Se revisaron los reportes generados y se aplicaron mejoras sugeridas. |
-| SpotBugs | Se eliminaron posibles fugas de memoria. |  | Se implementaron mejoras en el código basadas en las recomendaciones de SpotBugs. |
-| Total de SpotBugs antes de la implementación |  |  | 100% |
 |---| ---| --- | --- |
 | Total de JaCoCo antes de la implementación |  |  | 0% |
 

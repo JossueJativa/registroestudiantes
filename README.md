@@ -61,6 +61,22 @@
 | Plugin implementado | Refactorización de código       | Configuración de pipeline    | Generar y analizar reportes     |
 |---|---------------------------------|-----------------------------|---------------------------------|
 | Total de checkstyle antes de la implementación | | | 80% |
+## **Errores de Checkstyle**
+
+| Archivo                | Línea | Columna | Regla                          | Descripción                                                           |
+|-----------------------|-------|---------|--------------------------------|-----------------------------------------------------------------------|
+| `Main.java`            | 1     | -       | `JavadocPackage`               | Falta el archivo `package-info.java`.                                 |
+| `Main.java`            | 1     | 1       | `HideUtilityClassConstructor`  | Clases de utilidades no deben tener un constructor público o por defecto. |
+| `Main.java`            | 7     | 29      | `FinalParameters`              | El parámetro `args` debería ser final.                                |
+| `Main.java`            | 9     | 47      | `MagicNumber`                   | El valor `85.5` es un número mágico, debe usarse una constante.       |
+| `StudentManager.java`  | 1     | -       | `NewlineAtEndOfFile`            | El archivo no termina con un salto de línea.                          |
+| `StudentManager.java`  | 5     | 5       | `JavadocVariable`               | Falta el comentario Javadoc para la variable.                         |
+| `StudentManager.java`  | 6     | 5       | `JavadocVariable`               | Falta el comentario Javadoc para la variable.                         |
+| `StudentManager.java`  | 22    | 28      | `FinalParameters`               | El parámetro `studentName` debería ser final.                         |
+| `StudentManager.java`  | 22    | 48      | `FinalParameters`               | El parámetro `studentGrade` debería ser final.                        |
+| `StudentManager.java`  | 33    | -       | `LineLength`                    | La línea tiene más de 80 caracteres (encontrado 100).                  |
+
+---
 | CheckStyle | Se corrigieron nombres de variables según la convención de Java. |  | Se generaron reportes de Checkstyle para analizar la calidad del código. |
 | CheckStyle | Se eliminaron variables innecesarias y se reorganizaron los métodos. |  | Se implementó la integración de JaCoCo para la cobertura de pruebas. |
 | CheckStyle | Se añadieron comentarios Javadoc a clases y métodos. |  | Se revisaron los reportes y se aplicaron correcciones según las recomendaciones. |

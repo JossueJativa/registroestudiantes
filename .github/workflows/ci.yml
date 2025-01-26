@@ -30,11 +30,11 @@ jobs:
       continue-on-error: true
 
     - name: Run Checkstyle
-      run: mvn checkstyle:check
+      run: mvn checkstyle:checkstyle
       continue-on-error: true
 
     - name: Run SpotBugs
-      run: mvn spotbugs:check
+      run: mvn spotbugs:spotbugs
       continue-on-error: true
 
     - name: Check JaCoCo code coverage

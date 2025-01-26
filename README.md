@@ -8,10 +8,10 @@
 
 | Cargo | Nombre de la persona |
 |------|---------------|
-| Líder |  |
-| Responsable de análisis de métricas |  |
+| Líder | Jossue Játiva |
+| Responsable de análisis de métricas | Anthony Cochea |
 | Responsable de revision manual | Jossue Játiva |
-| Responsable de análisis estática |  |
+| Responsable de análisis estática | Matias Cedeño |
 
 2. Análisis del proyecto
 	* Partir por un proyecto de Java (Proporciona la plantilla básica)
@@ -47,17 +47,32 @@
 | Cambiar variables de addStudent | Clean Code | Cobertura de código y cumplimiento de estilos | ```public void addStudent(String student_name, double student_grade)``` |
 | Cambiar nombre de la instancia de StudentManager | Clean Code | Cobertura de código y cumplimiento de estilos | ```StudentManager student_manager = new StudentManager();``` |
 | Creación de responsabilidad única separando main de StudentManager | SOLID | Cobertura de código y cumplimiento de estilos | [Main.java](src/main/java/Main.java) |
+| Cohesión Baja | SOLID | Número de responsabilidades por clase. | ```Separación en clases: StudentService (gestión de datos) y StudentView (I/O).```|
+| Falta de Validaciones | Defensive Programming | Número de validaciones implementadas | ```isEmpty()```|
+| Métodos Largos y Complejo | Clean Code | Longitud de métodos ≤20 líneas. | ```formatStudentData() (lógica) y printStudents() (I/O).``` |
+| Dificultad para Extender Funcionalidades | SOLID | Facilidad para añadir nuevas clases. | ```Crear una interfaz StudentRepository: java public interface StudentRepository {void addStudent(Student student);} ``` |
+
 
 4. Implementación:
-	* Refactorización del código para cumplir con CleanCode y SOLID
-	* Configuración de pipeline CI/CD básico en Github Actions para validar automáticamente las mejoras
-	* Generar y analizar reportes de herramientas como Checkstyle, JaCoCo y SpotBugs
+	* Refactorización del código para cumplir con CleanCode y SOLID.
+	* Configuración de pipeline CI/CD básico en GitHub Actions para validar automáticamente las mejoras.
+	* Generar y analizar reportes de herramientas como Checkstyle, JaCoCo y SpotBugs.
 
-| Refactorización de código | Configuración de pipeline | Generar y analizar reportes |
-| --------| ----------------- | ----------- |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Plugin implementado | Refactorización de código       | Configuración de pipeline    | Generar y analizar reportes     |
+|---|---------------------------------|-----------------------------|---------------------------------|
+| Total de checkstyle antes de la implementación | | | 80% |
+| CheckStyle | Se corrigieron nombres de variables según la convención de Java. |  | Se generaron reportes de Checkstyle para analizar la calidad del código. |
+| CheckStyle | Se eliminaron variables innecesarias y se reorganizaron los métodos. |  | Se implementó la integración de JaCoCo para la cobertura de pruebas. |
+| CheckStyle | Se añadieron comentarios Javadoc a clases y métodos. |  | Se revisaron los reportes y se aplicaron correcciones según las recomendaciones. |
+| Total de checkstyle después de la implementación | | |  |
+|---| ---| --- | --- |
+| Total de SpotBugs antes de la implementación |  |  | 100% |
+| SpotBugs | Se corrigieron errores de código detectados por SpotBugs.            |  | Se generaron reportes de SpotBugs para evaluar la calidad del código.             |
+| SpotBugs | Se optimizó la gestión de memoria y recursos. |  | Se revisaron los reportes generados y se aplicaron mejoras sugeridas. |
+| SpotBugs | Se eliminaron posibles fugas de memoria. |  | Se implementaron mejoras en el código basadas en las recomendaciones de SpotBugs. |
+| Total de SpotBugs antes de la implementación |  |  | 100% |
+|---| ---| --- | --- |
+| Total de JaCoCo antes de la implementación |  |  | 0% |
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

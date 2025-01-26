@@ -68,7 +68,46 @@
 |---| ---| --- | --- |
 | Total de SpotBugs antes de la implementación |  |  | 100% |
 |---| ---| --- | --- |
-| Total de JaCoCo antes de la implementación |  |  | 0% |
+| Total de JaCoCo antes de la implementación | Se aplica los cambios sugeridos | se completo el reporte con una tasa de exito  | 95% |
+
+## **Análisis de Cobertura de Código con JaCoCo**
+
+Se realizó un análisis de cobertura de código utilizando **JaCoCo**, obteniendo los siguientes resultados:
+
+### **Descripción de los datos de cobertura**
+
+| **Métrica**            | **Valor en el reporte** | **Interpretación**                                                    |
+|-----------------------|----------------------|----------------------------------------------------------------------|
+| **Missed Instructions**| 3 of 65               | 3 instrucciones de código no fueron cubiertas por las pruebas (62 sí fueron ejecutadas). |
+| **Coverage (Cov.)**     | 95%                    | Cobertura de instrucciones del 95% (buena cobertura, solo el 5% del código no probado). |
+| **Missed Branches**     | 0 of 2                  | Todas las ramas de decisión fueron cubiertas (cobertura del 100%).    |
+| **Complexity (Cxty)**   | 6                        | La complejidad ciclomatica total del código.                          |
+| **Missed Lines**        | 1 of 16                  | 1 línea de código no fue ejecutada durante las pruebas.               |
+| **Missed Methods**      | 1 of 5                   | Falta cubrir 1 método en las pruebas.                                 |
+| **Missed Classes**      | 0 of 2                   | Todas las clases han sido cubiertas por las pruebas.                  |
+
+---
+
+### **Resumen del análisis**
+
+- La cobertura de código alcanzada es del **95%**, con solo **3 instrucciones** no cubiertas y **1 línea de código** sin ejecutar.
+- Se ha logrado una **cobertura del 100% de ramas**, lo que garantiza que todas las decisiones condicionales (if, else, switch) han sido evaluadas adecuadamente.
+- Todas las clases fueron cubiertas, pero aún queda un método que no ha sido probado, por lo que se recomienda agregar pruebas adicionales para alcanzar una cobertura completa.
+
+---
+
+### **Acciones a tomar para mejorar la cobertura:**
+
+1. **Revisar las instrucciones no cubiertas:**  
+   Identificar las líneas específicas del código que no fueron ejecutadas y agregar pruebas unitarias correspondientes.
+
+2. **Cobertura del método faltante:**  
+   Analizar el método sin cobertura y escribir casos de prueba para asegurarse de su correcta ejecución.
+
+3. **Automatización del análisis:**  
+   Integrar JaCoCo en el pipeline de CI/CD para evaluar la cobertura automáticamente en cada commit.
+
+---
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

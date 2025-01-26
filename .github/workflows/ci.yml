@@ -1,0 +1,70 @@
+name: Java CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '17'
+
+    - name: Build with Maven
+      run: mvn clean install -DskipTests
+
+    - name: Run JaCoCo tests and check code coverage
+      run: mvn jacoco:report
+      continue-on-error: true
+
+    - name: Run Checkstyle
+      run: mvn checkstyle:check
+      continue-on-error: true
+
+    - name: Run SpotBugs
+      run: mvn spotbugs:check
+      continue-on-error: true
+
+    - name: Check JaCoCo code coverage
+      id: jacoco_check
+      run: |
+        coverage=$(grep -oP '(?<=<counter type="LINE" missed="0" covered=")(\d+)' target/site/jacoco-aggregate/index.html | tail -n 1)
+        if [ "$coverage" -lt 80 ]; then
+          echo "JaCoCo coverage is below 80%."
+          exit 1
+        fi
+
+    - name: Check Checkstyle violations
+      id: checkstyle_check
+      run: |
+        violations=$(grep -c 'error' target/checkstyle-result.xml)
+        if [ "$violations" -gt 0 ]; then
+          echo "Checkstyle violations found."
+          exit 1
+        fi
+
+    - name: Check SpotBugs violations
+      id: spotbugs_check
+      run: |
+        critical_bugs=$(grep -c 'High' target/spotbugsXml.xml)
+        if [ "$critical_bugs" -gt 0 ]; then
+          echo "Critical SpotBugs violations found."
+          exit 1
+        fi
+
+    - name: Deploy to production
+      if: success() && steps.jacoco_check.outcome == 'success' && steps.checkstyle_check.outcome == 'success' && steps.spotbugs_check.outcome == 'success'
+      run: |
+        echo "Deploying application..."

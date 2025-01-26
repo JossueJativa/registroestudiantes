@@ -58,17 +58,20 @@
 	* Configuración de pipeline CI/CD básico en GitHub Actions para validar automáticamente las mejoras.
 	* Generar y analizar reportes de herramientas como Checkstyle, JaCoCo y SpotBugs.
 
-| Plugin implementado | Refactorización de código       | Configuración de pipeline    | Generar y analizar reportes     |
-|---|---------------------------------|-----------------------------|---------------------------------|
-| Total de checkstyle antes de la implementación | | | 80% |
-| CheckStyle | Se corrigieron nombres de variables según la convención de Java. |  | Se generaron reportes de Checkstyle para analizar la calidad del código. |
-| CheckStyle | Se eliminaron variables innecesarias y se reorganizaron los métodos. |  | Se implementó la integración de JaCoCo para la cobertura de pruebas. |
-| CheckStyle | Se añadieron comentarios Javadoc a clases y métodos. |  | Se revisaron los reportes y se aplicaron correcciones según las recomendaciones. |
-| Total de checkstyle después de la implementación | | |  |
-|---| ---| --- | --- |
-| Total de SpotBugs antes de la implementación |  |  | 100% |
-|---| ---| --- | --- |
-| Total de JaCoCo antes de la implementación |  |  | 0% |
+| Plugin implementado           | Refactorización de código                                                       | Configuración de pipeline                                              | Generar y analizar reportes                                                |
+|-------------------------------|----------------------------------------------------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Total de Checkstyle antes de la implementación | - | - | 80% |
+| CheckStyle | Se corrigieron nombres de variables según la convención de Java. | Se añadió el plugin de Checkstyle al `pom.xml` y se configuró el job de GitHub Actions para ejecutarlo. | Se generaron reportes de Checkstyle y se analizaron las violaciones en el código. |
+| CheckStyle | Se eliminaron variables innecesarias y se reorganizaron los métodos. | Se configuró la herramienta de análisis en el pipeline para generar un reporte de Checkstyle. | Se implementaron ajustes y revisiones en el código a partir de los reportes. |
+| CheckStyle | Se añadieron comentarios Javadoc a clases y métodos. | Se incluyó la integración con GitHub Actions para ejecutar Checkstyle automáticamente. | Se generó un reporte de estilo y se corrigieron errores basados en los resultados. |
+| Total de Checkstyle después de la implementación | - | - | - |
+| --- | --- | --- | --- |
+| Total de SpotBugs antes de la implementación | - | - | 100% |
+| --- | --- | --- | --- |
+| Total de JaCoCo antes de la implementación | - | - | 0% |
+| - | - | - | -|
+| Total de JaCoCo después de la implementación | - | - |  |
+
 
 5. Documentación
 	* Plan de acción (Máximo 5 páginas):

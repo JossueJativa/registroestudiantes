@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Start timer
+      id: timer
+      run: echo "CI/CD started at $(date +%s)" > start_time.txt
+
     - name: Check out the repository
       uses: actions/checkout@v2
 
@@ -26,13 +30,49 @@ jobs:
       run: mvn clean install -DskipTests
 
     - name: Run JaCoCo tests and check code coverage
-      run: mvn jacoco:report
+      run: |
+        mvn jacoco:report
+        bash <(curl -s https://codecov.io/bash) -t your_codecov_token
       continue-on-error: true
+
+    - name: Verify JaCoCo coverage
+      run: |
+        COVERAGE=$(mvn jacoco:report | grep -oP 'Total.*?(\d+)%' | grep -oP '\d+')
+        if [ "$COVERAGE" -lt 80 ]; then
+          echo "Code coverage is below 80%: $COVERAGE%"
+          exit 1
+        fi
 
     - name: Run Checkstyle
       run: mvn checkstyle:checkstyle
       continue-on-error: true
 
+    - name: Verify Checkstyle
+      run: |
+        ERRORS=$(mvn checkstyle:checkstyle | grep -oP 'Total.*?(\d+) errors' | grep -oP '\d+')
+        if [ "$ERRORS" -ne 0 ]; then
+          echo "Checkstyle found errors: $ERRORS"
+          exit 1
+        fi
+
     - name: Run SpotBugs
       run: mvn spotbugs:spotbugs
       continue-on-error: true
+
+    - name: Verify SpotBugs
+      run: |
+        CRITICALS=$(mvn spotbugs:spotbugs | grep -oP 'Total.*?(\d+) critical' | grep -oP '\d+')
+        if [ "$CRITICALS" -ne 0 ]; then
+          echo "SpotBugs found critical issues: $CRITICALS"
+          exit 1
+        fi
+
+    - name: End timer and check duration
+      run: |
+        END_TIME=$(date +%s)
+        START_TIME=$(cat start_time.txt | grep -oP '\d+')
+        DURATION=$((END_TIME - START_TIME))
+        if [ "$DURATION" -gt 180 ]; then
+          echo "CI/CD process took longer than 3 minutes: $DURATION seconds"
+          exit 1
+        fi

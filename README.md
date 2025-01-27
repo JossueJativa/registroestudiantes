@@ -5,7 +5,6 @@
 3. [Propuesta de mejora](#propuesta-de-mejora)
 	- [Tabla de propuestas](#tabla-de-propuestas)
 4. [Implementación](#implementación)
-	- [Tabla de implementación](#tabla-de-implementación)
 	- **CHECKSTYLE**
 		- [Análisis de cobertura](#análisis-de-cobertura-de-checkstyle)
 		- [Descripción de cobertura](#descripción-de-los-datos-de-cobertura-checkstyle)
@@ -79,6 +78,13 @@
 | Falta de Validaciones | Defensive Programming | Número de validaciones implementadas | ```isEmpty()```|
 | Métodos Largos y Complejo | Clean Code | Longitud de métodos ≤20 líneas. | ```formatStudentData() (lógica) y printStudents() (I/O).``` |
 | Dificultad para Extender Funcionalidades | SOLID | Facilidad para añadir nuevas clases. | ```Crear una interfaz StudentRepository: java public interface StudentRepository {void addStudent(Student student);} ``` |
+| Falta de comentarios Javadoc | Checkstyle | Número de comentarios Javadoc añadidos | ```/** Comentario Javadoc */``` |
+| Nombres de variables no coinciden con el patrón | Checkstyle | Nombres de variables ajustados al patrón | ```private List<String> studentsList;``` |
+| Uso de números mágicos | Checkstyle | Reemplazo de números mágicos con constantes | ```private static final double DEFAULT_GRADE = 85.5;``` |
+| Líneas largas | Checkstyle | Longitud de líneas ≤80 caracteres | ```Dividir líneas largas en varias líneas``` |
+| Instrucciones no cubiertas | JaCoCo | Cobertura de código | ```Agregar pruebas unitarias``` |
+| Método sin cobertura | JaCoCo | Cobertura de métodos | ```Agregar pruebas unitarias para el método``` |
+| Errores reportados por SpotBugs | SpotBugs | Número de errores corregidos | ```Revisar y corregir errores``` |
 
 ## Implementación
 4. Implementación:

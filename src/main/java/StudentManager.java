@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentManager {
+public class StudentManager implements StudentRepository {
     /**
      * List of student names.
      */
@@ -26,6 +26,7 @@ public class StudentManager {
      * @param studentName  the name of the student
      * @param studentGrade the grade of the student
      */
+    @Override
     public void addStudent(final String studentName, final double studentGrade) {
         if (studentName == null || studentName.isEmpty()) {
             throw new IllegalArgumentException("Student name cannot be null or empty");

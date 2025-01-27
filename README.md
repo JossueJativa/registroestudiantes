@@ -84,7 +84,6 @@
 | Líneas largas | Checkstyle | Longitud de líneas ≤80 caracteres | ```Dividir líneas largas en varias líneas``` |
 | Instrucciones no cubiertas | JaCoCo | Cobertura de código | ```Agregar pruebas unitarias``` |
 | Método sin cobertura | JaCoCo | Cobertura de métodos | ```Agregar pruebas unitarias para el método``` |
-| Errores reportados por SpotBugs | SpotBugs | Número de errores corregidos | ```Revisar y corregir errores``` |
 
 ## Implementación
 4. Implementación:

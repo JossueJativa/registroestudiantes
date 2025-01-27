@@ -7,8 +7,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(final String[] args) {
-        StudentManager studentManager = new StudentManager();
+        StudentRepository studentManager = new StudentManager();
         studentManager.addStudent("John Doe", DEFAULT_GRADE);
-        studentManager.listStudents();
+        ((StudentManager) studentManager).listStudents();
     }
 }

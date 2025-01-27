@@ -1,5 +1,29 @@
+# Indice
+1. [Roles](#roles)
+2. [Análisis del proyecto](#análisis-del-proyecto)
+	- [Tabla de análisis](#tabla-de-análisis)
+3. [Propuesta de mejora](#propuesta-de-mejora)
+	- [Tabla de propuestas](#tabla-de-propuestas)
+4. [Implementación](#implementación)
+	- [Tabla de implementación](#tabla-de-implementación)
+	- **CHECKSTYLE**
+		- [Análisis de cobertura](#análisis-de-cobertura-de-checkstyle)
+		- [Descripción de cobertura](#descripción-de-los-datos-de-cobertura-checkstyle)
+		- [Resumen de la cobertura](#resumen-del-análisis-checkstyle)
+		- [Acciones a tomar para la cobertura](#acciones-a-tomar-para-mejorar-la-cobertura-checkstyle)
+	- **JACOCO**
+		- [Análisis de cobertura](#análisis-de-cobertura-de-código-con-jacoco)
+		- [Descripción de cobertura](#descripción-de-los-datos-de-cobertura-jacoco)
+		- [Resumen de la cobertura](#resumen-del-análisis-jacoco)
+		- [Acciones a tomar para la cobertura](#acciones-a-tomar-para-mejorar-la-cobertura-jacoco)
+	- **SPOTBUGS**
+		- [Análisis de cobertura](#análisis-de-cobertura-de-código-con-spotbugs)
+
+---
+
 # Trabajo de proyecto integrador (Realizar):
 
+## Roles
 1. Asignación de roles
 	* Líder del equipo
 	* Responsable de análisis de métricas
@@ -13,6 +37,7 @@
 | Responsable de revision manual | Jossue Játiva |
 | Responsable de análisis estática | Matias Cedeño |
 
+## Análisis del proyecto
 2. Análisis del proyecto
 	* Partir por un proyecto de Java (Proporciona la plantilla básica)
 	* Realizar:
@@ -23,6 +48,7 @@
 			- Errores de estilo
 			- Métricas no cumplidas
 
+### Tabla de análisis
 | Identificación de problema | Código Antiguo |
 | --------| ----------------- |
 | Tipo de lista no especifica | ```private List students = new ArrayList<>();``` |
@@ -33,11 +59,13 @@
 | Nombre de la instancia con falta de legibilidad | ```StudentManager sm = new StudentManager();``` |
 | Todas las responsabilidades están en StudentManager.java | [StudentManager.java](src/main/java/StudentManager.java) |
 
+## Propuesta de mejora
 3. Propuesta de mejora
     * Problemas identificados
     * Técnicas de calidad a implementar (SOLID, Clean Code, Análisis estático)
     * Métricas para evaluar la calidad (Cobertura de código y cumplimiento de estilos)
 
+### Tabla de propuestas
 | Problema identificado | Técnica de calidad a implementar | Métrica para evaluar la calidad | Código nuevo |
 | --------| ----------------- | ----------- | ----------- |
 | No se especifica el tipo de lista | Clean Code | Cobertura de código y cumplimiento de estilos | ```private List<String> students = new ArrayList<>();``` |
@@ -52,45 +80,82 @@
 | Métodos Largos y Complejo | Clean Code | Longitud de métodos ≤20 líneas. | ```formatStudentData() (lógica) y printStudents() (I/O).``` |
 | Dificultad para Extender Funcionalidades | SOLID | Facilidad para añadir nuevas clases. | ```Crear una interfaz StudentRepository: java public interface StudentRepository {void addStudent(Student student);} ``` |
 
-
+## Implementación
 4. Implementación:
 	* Refactorización del código para cumplir con CleanCode y SOLID.
 	* Configuración de pipeline CI/CD básico en GitHub Actions para validar automáticamente las mejoras.
 	* Generar y analizar reportes de herramientas como Checkstyle, JaCoCo y SpotBugs.
 
+### Tabla de implementación
 | Plugin implementado | Refactorización de código       | Configuración de pipeline    | Generar y analizar reportes     |
 |---|---------------------------------|-----------------------------|---------------------------------|
 | Total de checkstyle antes de la implementación | | | 80% |
-## **Errores de Checkstyle**
+
+## Análisis de cobertura de Checkstyle
 
 | Archivo                | Línea | Columna | Regla                          | Descripción                                                           |
 |-----------------------|-------|---------|--------------------------------|-----------------------------------------------------------------------|
 | `Main.java`            | 1     | -       | `JavadocPackage`               | Falta el archivo `package-info.java`.                                 |
 | `Main.java`            | 1     | 1       | `HideUtilityClassConstructor`  | Clases de utilidades no deben tener un constructor público o por defecto. |
-| `Main.java`            | 7     | 29      | `FinalParameters`              | El parámetro `args` debería ser final.                                |
-| `Main.java`            | 9     | 47      | `MagicNumber`                   | El valor `85.5` es un número mágico, debe usarse una constante.       |
-| `StudentManager.java`  | 1     | -       | `NewlineAtEndOfFile`            | El archivo no termina con un salto de línea.                          |
-| `StudentManager.java`  | 5     | 5       | `JavadocVariable`               | Falta el comentario Javadoc para la variable.                         |
-| `StudentManager.java`  | 6     | 5       | `JavadocVariable`               | Falta el comentario Javadoc para la variable.                         |
-| `StudentManager.java`  | 22    | 28      | `FinalParameters`               | El parámetro `studentName` debería ser final.                         |
-| `StudentManager.java`  | 22    | 48      | `FinalParameters`               | El parámetro `studentGrade` debería ser final.                        |
-| `StudentManager.java`  | 33    | -       | `LineLength`                    | La línea tiene más de 80 caracteres (encontrado 100).                  |
+| `Main.java`            | 2     | 5       | `MissingJavadocMethod`         | Falta el comentario Javadoc para el método.                           |
+| `Main.java`            | 2     | 29      | `FinalParameters`              | El parámetro `args` debería ser final.                                |
+| `Main.java`            | 3     | 24      | `LocalVariableName`            | El nombre `student_manager` debe coincidir con el patrón `^[a-z][a-zA-Z0-9]*$`. |
+| `Main.java`            | 4     | 48      | `MagicNumber`                  | El valor `85.5` es un número mágico, debe usarse una constante.       |
+| `StudentManager.java`  | 1     | -       | `NewlineAtEndOfFile`           | El archivo no termina con un salto de línea.                          |
+| `StudentManager.java`  | 5     | 5       | `JavadocVariable`              | Falta el comentario Javadoc para la variable.                         |
+| `StudentManager.java`  | 6     | 5       | `JavadocVariable`              | Falta el comentario Javadoc para la variable.                         |
+| `StudentManager.java`  | 8     | 5       | `DesignForExtension`           | La clase `StudentManager` parece diseñada para extensión, pero el método `addStudent` no tiene Javadoc que explique cómo hacerlo de manera segura. |
+| `StudentManager.java`  | 8     | 5       | `MissingJavadocMethod`         | Falta el comentario Javadoc para el método.                           |
+| `StudentManager.java`  | 8     | 28      | `FinalParameters`              | El parámetro `student_name` debería ser final.                        |
+| `StudentManager.java`  | 8     | 35      | `ParameterName`                | El nombre `student_name` debe coincidir con el patrón `^[a-z][a-zA-Z0-9]*$`. |
+| `StudentManager.java`  | 8     | 49      | `FinalParameters`              | El parámetro `student_grade` debería ser final.                       |
+| `StudentManager.java`  | 8     | 56      | `ParameterName`                | El nombre `student_grade` debe coincidir con el patrón `^[a-z][a-zA-Z0-9]*$`. |
+| `StudentManager.java`  | 14    | 5       | `DesignForExtension`           | La clase `StudentManager` parece diseñada para extensión, pero el método `listStudents` no tiene Javadoc que explique cómo hacerlo de manera segura. |
+| `StudentManager.java`  | 14    | 5       | `MissingJavadocMethod`         | Falta el comentario Javadoc para el método.                           |
+| `StudentManager.java`  | 16    | -       | `LineLength`                   | La línea tiene más de 80 caracteres (encontrado 100).                  |
 
+### Descripción de los datos de cobertura CheckStyle
+
+| **Métrica**            | **Valor en el reporte** | **Interpretación**                                                    |
+|-----------------------|----------------------|----------------------------------------------------------------------|
+| **Errores Totales**    | 18                   | Número total de errores encontrados por Checkstyle.                  |
+| **Archivos Analizados**| 2                    | Número de archivos analizados por Checkstyle.                        |
+| **Errores por Archivo**| 9                    | Promedio de errores por archivo.                                      |
+
+### Resumen del análisis CheckStyle
+
+- Se encontraron un total de **18 errores** en los archivos analizados.
+- Los errores incluyen problemas de Javadoc, nombres de variables, números mágicos y longitud de línea.
+- Se recomienda revisar y corregir cada error para mejorar la calidad del código y cumplir con las normas de estilo.
+
+### Acciones a tomar para mejorar la cobertura CheckStyle:
+
+1. **Agregar comentarios Javadoc:**  
+   Asegurarse de que todos los métodos y variables tengan comentarios Javadoc adecuados.
+
+2. **Renombrar variables:**  
+   Cambiar los nombres de las variables para que coincidan con los patrones de nomenclatura establecidos.
+
+3. **Eliminar números mágicos:**  
+   Reemplazar los números mágicos con constantes descriptivas.
+
+4. **Ajustar longitud de línea:**  
+   Dividir las líneas largas para cumplir con el límite de 80 caracteres.
+
+| Total de checkstyle después de la implementación | | | 100% |
+|---| ---| --- | --- |
+
+## Análisis de Cobertura de Código con SpotBugs
+**NO SE REALIZARON MAS CAMBIOS SI YA LLEGO AL 100% DE COBERTURA EN SPOTBUGS**
 ---
-| CheckStyle | Se corrigieron nombres de variables según la convención de Java. |  | Se generaron reportes de Checkstyle para analizar la calidad del código. |
-| CheckStyle | Se eliminaron variables innecesarias y se reorganizaron los métodos. |  | Se implementó la integración de JaCoCo para la cobertura de pruebas. |
-| CheckStyle | Se añadieron comentarios Javadoc a clases y métodos. |  | Se revisaron los reportes y se aplicaron correcciones según las recomendaciones. |
-| Total de checkstyle después de la implementación | | |  |
-|---| ---| --- | --- |
+
 | Total de SpotBugs antes de la implementación |  |  | 100% |
-|---| ---| --- | --- |
-| Total de JaCoCo antes de la implementación | Se aplica los cambios sugeridos | se completo el reporte con una tasa de exito  | 95% |
+|---| ---| ---| --- |
 
-## **Análisis de Cobertura de Código con JaCoCo**
-
+## Análisis de Cobertura de Código con JaCoCo
 Se realizó un análisis de cobertura de código utilizando **JaCoCo**, obteniendo los siguientes resultados:
 
-### **Descripción de los datos de cobertura**
+### Descripción de los datos de cobertura JaCoco
 
 | **Métrica**            | **Valor en el reporte** | **Interpretación**                                                    |
 |-----------------------|----------------------|----------------------------------------------------------------------|
@@ -104,7 +169,7 @@ Se realizó un análisis de cobertura de código utilizando **JaCoCo**, obtenien
 
 ---
 
-### **Resumen del análisis**
+### Resumen del análisis JaCoCo
 
 - La cobertura de código alcanzada es del **95%**, con solo **3 instrucciones** no cubiertas y **1 línea de código** sin ejecutar.
 - Se ha logrado una **cobertura del 100% de ramas**, lo que garantiza que todas las decisiones condicionales (if, else, switch) han sido evaluadas adecuadamente.
@@ -112,7 +177,7 @@ Se realizó un análisis de cobertura de código utilizando **JaCoCo**, obtenien
 
 ---
 
-### **Acciones a tomar para mejorar la cobertura:**
+### Acciones a tomar para mejorar la cobertura JaCoCo:
 
 1. **Revisar las instrucciones no cubiertas:**  
    Identificar las líneas específicas del código que no fueron ejecutadas y agregar pruebas unitarias correspondientes.

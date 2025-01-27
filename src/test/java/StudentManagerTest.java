@@ -53,4 +53,22 @@ class StudentManagerTest {
         String output = outContent.toString().trim();
         assertEquals("", output, "La lista debe estar vacía al inicio");
     }
+
+    @Test
+    void testAddStudentWithInvalidName() {
+        StudentManager manager = new StudentManager();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.addStudent("", 90.0);
+        });
+        assertEquals("Student name cannot be null or empty", exception.getMessage());
+    }
+
+    @Test
+    void testAddStudentWithInvalidGrade() {
+        StudentManager manager = new StudentManager();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            manager.addStudent("Alice", 110.0);
+        });
+        assertEquals("Student grade must be between 0 and 100", exception.getMessage());
+    }
 }

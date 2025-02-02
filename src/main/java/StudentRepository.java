@@ -1,3 +1,6 @@
+import java.util.List;
+
 public interface StudentRepository {
-    void addStudent(String studentName, double studentGrade);
+    void save(Student student);
+    List<Student> findAll();
 }

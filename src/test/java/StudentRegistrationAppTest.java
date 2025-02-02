@@ -3,72 +3,83 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
-class StudentManagerTest {
+class StudentRegistrationAppTest {
 
     @Test
-    void testAddStudent() {
-        StudentManager manager = new StudentManager();
-        manager.addStudent("Alice", 90.0);
+    void testRegisterStudent() {
+        StudentRepositoryImpl repository = new StudentRepositoryImpl();
+        StudentConsolePrinter printer = new StudentConsolePrinter();
+        StudentRegistrationApp app = new StudentRegistrationApp(repository, printer);
 
-        // Verificar que el estudiante se agregó correctamente
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        app.registerStudent(new Student("Alice", 90.0));
 
-        manager.listStudents();
-        System.setOut(System.out);
-
-        String output = outContent.toString().trim();
-        assertTrue(output.contains("Student: Alice, Grade: 90.0"), "El estudiante debería estar en la lista");
+        List<Student> students = repository.findAll();
+        assertEquals(1, students.size(), "Debe haber un estudiante registrado");
+        assertEquals("Alice", students.get(0).getName());
+        assertEquals(90.0, students.get(0).getGrade());
     }
 
     @Test
-    void testMultipleStudents() {
-        StudentManager manager = new StudentManager();
-        manager.addStudent("Bob", 75.0);
-        manager.addStudent("Charlie", 88.5);
+    void testDisplayStudents() {
+        StudentRepositoryImpl repository = new StudentRepositoryImpl();
+        StudentConsolePrinter printer = new StudentConsolePrinter();
+        StudentRegistrationApp app = new StudentRegistrationApp(repository, printer);
 
-        // Capturando la salida
+        app.registerStudent(new Student("Bob", 85.0));
+        app.registerStudent(new Student("Charlie", 78.5));
+
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        manager.listStudents();
+        app.displayStudents();
         System.setOut(System.out);
 
         String output = outContent.toString().trim();
-        assertTrue(output.contains("Student: Bob, Grade: 75.0"), "Debe incluir a Bob con 75.0");
-        assertTrue(output.contains("Student: Charlie, Grade: 88.5"), "Debe incluir a Charlie con 88.5");
+        assertTrue(output.contains("Nombre: Bob"), "Debe incluir a Bob");
+        assertTrue(output.contains("Nombre: Charlie"), "Debe incluir a Charlie");
     }
 
     @Test
-    void testEmptyList() {
-        StudentManager manager = new StudentManager();
-        
+    void testRegisterStudentWithInvalidName() {
+        StudentRepositoryImpl repository = new StudentRepositoryImpl();
+        StudentConsolePrinter printer = new StudentConsolePrinter();
+        StudentRegistrationApp app = new StudentRegistrationApp(repository, printer);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            app.registerStudent(new Student("", 90.0));
+        });
+
+        assertEquals("El nombre no puede estar vacío", exception.getMessage());
+    }
+
+    @Test
+    void testRegisterStudentWithInvalidGrade() {
+        StudentRepositoryImpl repository = new StudentRepositoryImpl();
+        StudentConsolePrinter printer = new StudentConsolePrinter();
+        StudentRegistrationApp app = new StudentRegistrationApp(repository, printer);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            app.registerStudent(new Student("Alice", 105.0));
+        });
+
+        assertEquals("La calificación debe estar entre 0 y 100", exception.getMessage());
+    }
+
+    @Test
+    void testEmptyStudentList() {
+        StudentRepositoryImpl repository = new StudentRepositoryImpl();
+        StudentConsolePrinter printer = new StudentConsolePrinter();
+        StudentRegistrationApp app = new StudentRegistrationApp(repository, printer);
+
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        manager.listStudents();
+        app.displayStudents();
         System.setOut(System.out);
 
         String output = outContent.toString().trim();
         assertEquals("", output, "La lista debe estar vacía al inicio");
-    }
-
-    @Test
-    void testAddStudentWithInvalidName() {
-        StudentManager manager = new StudentManager();
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            manager.addStudent("", 90.0);
-        });
-        assertEquals("Student name cannot be null or empty", exception.getMessage());
-    }
-
-    @Test
-    void testAddStudentWithInvalidGrade() {
-        StudentManager manager = new StudentManager();
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            manager.addStudent("Alice", 110.0);
-        });
-        assertEquals("Student grade must be between 0 and 100", exception.getMessage());
     }
 }

@@ -151,11 +151,38 @@
 |---| ---| --- | --- |
 
 ## Análisis de Cobertura de Código con SpotBugs
-**NO SE REALIZARON MAS CAMBIOS SI YA LLEGO AL 100% DE COBERTURA EN SPOTBUGS**
----
+# Detección de Bugs (SpotBugs)
 
-| Total de SpotBugs antes de la implementación |  |  | 100% |
-|---| ---| ---| --- |
+## Análisis de Archivos
+
+| **Archivo**           | **Tamaño (Bytes)** | **Cantidad de Bugs** |
+|-----------------------|--------------------|----------------------|
+| `Main.java`           | 8                  | 0                    |
+| `StudentManager.java` | 16                 | 0                    |
+
+## Análisis de Clases
+
+| **Nombre de la Clase** | **Archivo**         | **Tamaño (Bytes)** | **Bugs Encontrados** | **¿Es una Interfaz?** |
+|------------------------|---------------------|--------------------|----------------------|-----------------------|
+| `Main`                 | `Main.java`         | 8                  | 0                    | No                    |
+| `StudentManager`       | `StudentManager.java` | 16                 | 0                    | No                    |
+
+## Rendimiento de SpotBugs
+
+| **Nombre de la Clase**                                         | **Promedio de Microsegundos por Invocación** | **Máximo de Microsegundos por Invocación** | **Desviación Estándar** | **Invocaciones** | **Total en Milisegundos** |
+|---------------------------------------------------------------|---------------------------------------------|-------------------------------------------|-------------------------|------------------|--------------------------|
+| `edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine` | 842                                         | 20840                                     | 1782                    | 546              | 460                      |
+| `edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine` | 345                                         | 5072                                      | 335                     | 548              | 189                      |
+| `edu.umd.cs.findbugs.detect.FieldItemSummary`                 | 6225                                        | 22706                                     | 7122                    | 26               | 161                      |
+| `edu.umd.cs.findbugs.detect.FindNoSideEffectMethods`          | 4079                                        | 17905                                     | 4936                    | 26               | 106                      |
+| `edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory`             | 788                                         | 6408                                      | 1014                    | 131              | 103                      |
+| `edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory`  | 15823                                       | 77108                                     | 30643                   | 5                | 79                       |
+| `edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine` | 1185                                       | 28878                                     | 4048                    | 54               | 64                       |
+| `edu.umd.cs.findbugs.util.TopologicalSort`                    | 109                                         | 2194                                      | 212                     | 503              | 55                       |
+| `edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers` | 1978                                       | 13122                                     | 2688                    | 26               | 51                       |
+| `edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures` | 1695                                       | 10915                                     | 2591                    | 26               | 44                       |
+| `edu.umd.cs.findbugs.detect.OverridingEqualsNotSymmetrical`  | 1421                                       | 19822                                     | 3755                    | 26               | 36                       |
+| `edu.umd.cs.findbugs.detect.CalledMethods`                   | 1161                                       | 3961                                      | 1201                    | 26               | 30                       |
 
 ## Análisis de Cobertura de Código con JaCoCo
 Se realizó un análisis de cobertura de código utilizando **JaCoCo**, obteniendo los siguientes resultados:
